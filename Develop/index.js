@@ -2,7 +2,6 @@
 
 // TODO: Create an array of questions for user input
 const questions = [];
-test;
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
