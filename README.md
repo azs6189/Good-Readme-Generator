@@ -34,7 +34,7 @@ Begin to follow the prompts. Once finalized, your README.md file will be generat
 
 Link to [Good-Readme-Generator Video Walkthrough](https://drive.google.com/file/d/1WNiwciQzrEhzqrhNfmEhhf8wspItfrZY/view?usp=sharing)
 
-![alt text](./assets/Good-Readme-Generator-Image)
+![alt text](./assets/Good-Readme-Generator-Image.png)
 
 ## License
 
