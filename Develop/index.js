@@ -9,7 +9,7 @@ function renderLicenseBadge(license) {
 		case "GPL":
 			url = `![licenseShield](https://img.shields.io/badge/license-GPL-blue)`;
 			break;
-		case "Apache 2.0":
+		case "Apache":
 			url = `![licenseShield](https://img.shields.io/badge/license-apache%202.0-blue)`;
 			break;
 	}
