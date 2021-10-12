@@ -103,7 +103,7 @@ function generateMarkdown(data) {
   ## Questions
   * __GitHub:__ [github.com/${data.gitHub}](https://github.com/${data.gitHub})
   * __Email:__ [${data.email}](mailto:${data.email})    
-    _This README was created using the [README Generator](https://github.com/azs6189/Good_Readme-Generator)_
+    _This README was created using the [README Generator](https://github.com/azs6189/Good-Readme-Generator)_
 `;
 }
 
