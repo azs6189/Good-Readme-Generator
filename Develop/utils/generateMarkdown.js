@@ -4,14 +4,14 @@ function renderLicenseBadge(license) {
 	let url = ``;
 	switch (license) {
 		case "Apache":
-			url = `![License](https://img.shields.io/badge/License-Apache%202.0-blue)`;
+			url = `![licenseShield](https://img.shields.io/badge/license-apache%202.0-blue)`;
 			break;
 
 		case "MIT":
 			url = `![licenseShield](https://img.shields.io/badge/license-MIT-yellow)`;
 			break;
 
-		case `ISC`:
+		case "ISC":
 			url = `![License: ISC](https://img.shields.io/badge/License-ISC-blue)`;
 			break;
 	}
@@ -25,18 +25,29 @@ function renderLicenseLink(license) {
 	if (license === "None") {
 		return url;
 	}
-	url = `/LICENSE`;
+	url = "/LICENSE";
 	return url;
 }
 
-// Function that returns the license section of README
+// Create a function that returns the license link
+// If there is no license, return an empty string
+function renderLicenseLink(license) {
+	let url = ``;
+	if (license === "None") {
+		return url;
+	}
+	url = "/LICENSE";
+	return url;
+}
+
+// Create a function that returns the license section of README and Table of Contents
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
 	if (license === "None") {
 		return ``;
 	}
 	return `## License
-    This project is registered under the [${license} License] (${renderLicenseLink(
+  This project is registered under the [${license} License](${renderLicenseLink(
 		license
 	)})`;
 }
@@ -48,51 +59,51 @@ function renderLicenseTableofContents(license) {
 	return `* [License](#license)`;
 }
 
+// Create a list when input items are separated by a comma
 function renderList(list) {
 	const listArr = [];
 	list = list.split(",");
 	list.forEach((listItem) => {
-		listArr.push(`* {listItem}`);
+		listArr.push(`* ${listItem}`);
 	});
-	return listArr.join("/n ");
+	return listArr.join("\n  ");
 }
 
-//Create a function to generate markdown for README
+// Create a function to generate markdown for README
 function generateMarkdown(data) {
 	return `# ${data.title}
-    ${renderLicenseBadge(data.license)}
+  ${renderLicenseBadge(data.license)}
+  
+  ## Table of Contents
+  * [Description](#description)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  ${renderLicenseTableofContents(data.license)}
+  * [Contributing](#contributing)
+  * [Tests](#tests)
+  * [Questions](#questions)
+  
+  ## Description
+  ${data.description}
 
-    ## Table of Contents
-    * [Description](#description)
-    * [Installation](#installation)
-    * [Usage](#usage)
-    ${renderLicenseTableofContents(data.license)}
-    * [Contributing](#contributing)
-    * [Tests](#tests)
-    * [Questions](#questions)
-    
-    ## Description
-    ${data.description}
-    
-    ## Installation
-    ${data.installation}
+  ## Installation
+  ${data.installation}
 
-    ## Usage
-    ${data.usage}
+  ## Usage
+  ${data.usage}
 
-    ${renderLicenseSection(data.license)}
+  ${renderLicenseSection(data.license)}
 
-    ## Contributing
-    ${renderList(data.contributors)}
+  ## Contributing
+  ${renderList(data.contributors)}
+  
+  ## Tests
+  ${renderList(data.tests)}
 
-    ## Tests
-    ${renderList(data.tests)}
-
-    ## Questions
-    * __GitHub:__ [github.com/${data.gitHub}](https://github.com/${data.gitHub})
-    * __Email:__ [${data.email}](mailto:${data.email})
-    
-    _This README was created using the [README Generator](https://github.com/azs6189/README-Generator)_
+  ## Questions
+  * __GitHub:__ [github.com/${data.gitHub}](https://github.com/${data.gitHub})
+  * __Email:__ [${data.email}](mailto:${data.email})    
+    _This README was created using the [README Generator](https://github.com/azs6189/Good_Readme-Generator)_
 `;
 }
 

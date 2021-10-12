@@ -1,92 +1,78 @@
-// Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {
-	let url = ``;
-	switch (license) {
-		case "MIT":
-			url = `![licenseShield](https://img.shields.io/badge/license-MIT-yellow)`;
-			break;
-		case "GPL":
-			url = `![licenseShield](https://img.shields.io/badge/license-GPL-blue)`;
-			break;
-		case "Apache":
-			url = `![licenseShield](https://img.shields.io/badge/license-apache%202.0-blue)`;
-			break;
-	}
-	return url;
+// Include packages required for this application
+const inquirer = require("inquirer");
+const path = require("path");
+const fs = require("fs");
+const generateMarkdown = require("./utils/generateMarkdown");
+
+// Create an array of questions for user input
+const questions = [
+	{
+		type: "input",
+		name: "title",
+		message: "What is this project's title?",
+	},
+	{
+		type: "input",
+		name: "description",
+		message: "Please write a description of your project:",
+	},
+	{
+		type: "input",
+		name: "installation",
+		message: "What steps are required to install this project?",
+	},
+	{
+		type: "list",
+		name: "license",
+		message: "Which license would you like to include in your project?",
+		choices: ["Apache", "ISC", "MIT", "None"],
+	},
+	{
+		type: "input",
+		name: "usage",
+		message: "How do you use your project?",
+	},
+	{
+		type: "input",
+		name: "contributors",
+		message:
+			"Who contributed to this project? List any names and GitHub usernames separated by a comma:",
+	},
+	{
+		type: "input",
+		name: "tests",
+		message:
+			"List tests run on this application by separating each with a comma:",
+	},
+	{
+		type: "input",
+		name: "gitHub",
+		message: "What is your GitHub username?",
+	},
+	{
+		type: "input",
+		name: "email",
+		message: "What is your email address?",
+	},
+];
+
+// Create a function to write a README file
+function writeToFile(fileName, data) {
+	return fs.writeFileSync(path.join(__dirname, fileName), data);
 }
 
-// Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {
-	let url = ``;
-	if (license === "None") {
-		return url;
-	}
-	url = "/LICENSE";
-	return url;
+// Create a function to initialize app
+function init() {
+	inquirer
+		.prompt(questions)
+		.then((data) => {
+			writeToFile("README.md", generateMarkdown(data));
+			console.log(data);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 }
 
-// Create a function that returns the license section of README and Table of Contents
-// If there is no license, return an empty string
-function renderLicenseSection(license) {
-	if (license === "None") {
-		return ``;
-	}
-	return `## License
-    This project is registered under the [${license} License](${renderLicenseLink(
-		license
-	)})`;
-}
-
-function renderLicenseTableofContents(license) {
-	if (license === "None") {
-		return ``;
-	}
-	return `* [License](#license)`;
-}
-
-// Create a list when input items are separated by a comma
-function renderList(list) {
-	const listArr = [];
-	list = list.split(",");
-	list.forEach((listItem) => {
-		listArr.push(`* ${listItem}`);
-	});
-	return listArr.join("\n  ");
-}
-
-// Create a function to generate markdown for README
-function generateMarkdown(data) {
-	return `# ${data.title}
-    ${renderLicenseBadge(data.license)}
-    
-    ## Table of Contents
-    * [Description](#description)
-    * [Installation](#installation)
-    * [Usage](#usage)
-    ${renderLicenseTableofContents(data.license)}
-    * [Contributing](#contributing)
-    * [Tests](#tests)
-    * [Questions](#questions)
-    
-    ## Description
-    ${data.description}
-    ## Installation
-    ${data.installation}
-    ## Usage
-    ${data.usage}
-    ${renderLicenseSection(data.license)}
-    ## Contributing
-    ${renderList(data.contributors)}
-    
-    ## Tests
-    ${renderList(data.tests)}
-    ## Questions
-    * __GitHub:__ [github.com/${data.gitHub}](https://github.com/${data.gitHub})
-    * __Email:__ [${data.email}](mailto:${data.email})
-    
-    _This README was created using the [README Generator](https://github.com/azs6189/README-Generator)_`;
-}
-
-module.exports = generateMarkdown;
+// Function call to initialize app
+init();
