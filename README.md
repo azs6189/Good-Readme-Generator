@@ -14,11 +14,11 @@
 
 ## Description
 
-The README Generator is a command-line application that dynamically generates a professional README.md file from a user’s input using the inquirer package.
+This README Generator is a command-line application that dynamically generates a professional README.md file from a user’s input using the inquirer package.
 
 ## Installation
 
-First, ensure you have Node.js downloaded on your computer. Next, download the Good-Readme-Generator repository. Open a terminal window and ensure you are in the Develop folder. Run npm install in order to include all dependencies in your application.
+First, ensure you have Node.js downloaded on your computer. Next, download this Good-Readme-Generator repository. Open a terminal window and ensure you are in the Develop folder. Run npm install in order to include all dependencies in your application.
 
 ## Usage
 
