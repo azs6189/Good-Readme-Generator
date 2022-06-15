@@ -25,7 +25,7 @@ First, ensure you have Node.js downloaded on your computer. Next, download this 
 The next step in the process is to type the following in your terminal:
 
 ```bash
-node server.js
+node index.js
 ```
 
 Begin to follow the prompts. Once finalized, your README.md file will be generated within your repo.
